@@ -1,6 +1,6 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
-import { env } from "./env";
+import { env } from "./src/env";
 
 export default $config({
   app(input) {
@@ -16,7 +16,7 @@ export default $config({
     });
 
     const api = new sst.aws.Function("MyApi", {
-      handler: "sender.handler",
+      handler: "src/sender.handler",
       link: [email],
       url: true,
     });
