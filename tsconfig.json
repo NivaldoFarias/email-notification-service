@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    /* Language Compilation Options */
+    "module": "preserve",
+    "target": "ES2022",
+    "moduleDetection": "force",
+    "resolveJsonModule": true,
+    "lib": ["ES2022"],
+    "allowJs": true,
+    "checkJs": true,
+    "isolatedModules": true,
+
+    /* Emit Rules */
+    "noEmit": true,
+
+    /* Type Checking Rules */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    /* Other Options */
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

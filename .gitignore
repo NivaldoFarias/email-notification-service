@@ -1,0 +1,9 @@
+# sst
+.sst
+
+# Node.js
+node_modules
+
+# Others
+**.env**
+!.env.example
