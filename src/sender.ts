@@ -3,6 +3,8 @@ import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 
 const client = new SESv2Client();
 
+import { env } from "./env";
+
 export const handler = async () => {
   await client.send(
     new SendEmailCommand({
@@ -17,7 +19,7 @@ export const handler = async () => {
           },
           Body: {
             Text: {
-              Data: `Sent from my SST app '${Resource.App.name}' on stage '${Resource.App.stage}'.`,
+              Data: `Sent from my SST app '${Resource.App.name}' on stage '${Resource.App.stage}' and environment '${env.NODE_ENV}'.`,
             },
           },
         },

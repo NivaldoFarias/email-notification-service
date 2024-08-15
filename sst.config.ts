@@ -6,7 +6,7 @@ export default $config({
   app(input) {
     return {
       name: "modak",
-      removal: input?.stage === "production" ? "retain" : "remove",
+      removal: input?.stage === "main" ? "retain" : "remove",
       home: "aws",
     };
   },
