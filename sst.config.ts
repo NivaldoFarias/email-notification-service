@@ -22,7 +22,7 @@ export default $config({
     });
 
     return {
-      api: gateway.url,
+      gateway: gateway.url,
     };
   },
   console: {
