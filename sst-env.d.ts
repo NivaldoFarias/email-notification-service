@@ -3,14 +3,14 @@
 import "sst"
 declare module "sst" {
   export interface Resource {
-    "MyApi": {
+    "modakEmail": {
+      "sender": string
+      "type": "sst.aws.Email"
+    }
+    "modakGateway": {
       "name": string
       "type": "sst.aws.Function"
       "url": string
-    }
-    "MyEmail": {
-      "sender": string
-      "type": "sst.aws.Email"
     }
   }
 }

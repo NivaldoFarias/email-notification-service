@@ -11,18 +11,18 @@ export default $config({
     };
   },
   async run() {
-    const email = new sst.aws.Email("MyEmail", {
+    const email = new sst.aws.Email("modakEmail", {
       sender: env.EMAIL_SENDER,
     });
 
-    const api = new sst.aws.Function("MyApi", {
+    const gateway = new sst.aws.Function("modakGateway", {
       handler: "src/sender.handler",
       link: [email],
       url: true,
     });
 
     return {
-      api: api.url,
+      api: gateway.url,
     };
   },
 });

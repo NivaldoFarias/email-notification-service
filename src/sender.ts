@@ -6,18 +6,18 @@ const client = new SESv2Client();
 export const handler = async () => {
   await client.send(
     new SendEmailCommand({
-      FromEmailAddress: Resource.MyEmail.sender,
+      FromEmailAddress: Resource.modakEmail.sender,
       Destination: {
-        ToAddresses: [Resource.MyEmail.sender],
+        ToAddresses: [Resource.modakEmail.sender],
       },
       Content: {
         Simple: {
           Subject: {
-            Data: "Hello World!",
+            Data: "New SST App Notification",
           },
           Body: {
             Text: {
-              Data: "Sent from my SST app.",
+              Data: `Sent from my SST app '${Resource.App.name}' on stage '${Resource.App.stage}'.`,
             },
           },
         },
