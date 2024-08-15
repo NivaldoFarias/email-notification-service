@@ -16,9 +16,15 @@ export default $config({
     });
 
     const gateway = new sst.aws.Function("modakGateway", {
-      handler: "src/sender.handler",
+      handler: "src/email.handler",
       link: [email],
-      url: true,
+      description: "Sends email notifications",
+      environment: env,
+      url: {
+        cors: {
+          allowMethods: ["GET", "POST"],
+        },
+      },
     });
 
     return {
