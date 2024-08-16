@@ -34,6 +34,7 @@ export default tseslint.config(
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/triple-slash-reference": "off",
 			"@typescript-eslint/no-unsafe-member-access": "off",
+			"@typescript-eslint/restrict-template-expressions": ["error", { allowNumber: true }],
 		},
 	},
 );

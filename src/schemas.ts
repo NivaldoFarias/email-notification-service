@@ -20,3 +20,23 @@ export const emailInputSchema = z.object({
 	destination: z.string().email(),
 	message: z.string(),
 });
+
+export class Notification {
+	constructor(
+		public readonly id: number,
+		public readonly userId: number,
+		public readonly type: string,
+		public readonly message: string,
+		public readonly createdAt: string,
+		public readonly updatedAt: string,
+	) {}
+}
+
+export class User {
+	constructor(
+		public readonly id: number,
+		public readonly email: string,
+		public readonly createdAt: string,
+		public readonly updatedAt: string,
+	) {}
+}

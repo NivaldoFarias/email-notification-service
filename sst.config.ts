@@ -15,9 +15,12 @@ export default $config({
 			sender: env.EMAIL_SENDER,
 		});
 
+		const vpc = new sst.aws.Vpc("modakVpc");
+		const rds = new sst.aws.Postgres("modakDatabase", { vpc });
+
 		const gateway = new sst.aws.Function("modakGateway", {
-			handler: "src/email.handler",
-			link: [email],
+			handler: "src/index.handler",
+			link: [email, rds],
 			description: "Sends email notifications",
 			environment: env,
 			url: {
@@ -30,14 +33,5 @@ export default $config({
 		return {
 			gateway: gateway.url,
 		};
-	},
-	console: {
-		autodeploy: {
-			target(event) {
-				if (event.type === "branch" && event.branch === "main" && event.action === "pushed") {
-					return { stage: "production" };
-				}
-			},
-		},
 	},
 });

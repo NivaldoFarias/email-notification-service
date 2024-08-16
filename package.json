@@ -7,13 +7,18 @@
 	"scripts": {
 		"dev": "bunx sst dev",
 		"lint": "bunx eslint .",
-		"format": "bunx prettier --write ."
+		"format": "bunx prettier --write .",
+		"db": "bunx sst shell drizzle-kit",
+		"db:studio": "bunx sst shell drizzle-kit studio"
 	},
 	"license": "MIT",
 	"dependencies": {
+		"@aws-sdk/client-rds-data": "^3.632.0",
 		"@aws-sdk/client-sesv2": "^3.631.0",
 		"@hono/zod-validator": "^0.2.2",
 		"@t3-oss/env-core": "^0.11.0",
+		"drizzle-kit": "^0.24.0",
+		"drizzle-orm": "^0.33.0",
 		"hono": "^4.5.5",
 		"sst": "ion",
 		"zod": "^3.23.8"
@@ -23,6 +28,7 @@
 		"@ianvs/prettier-plugin-sort-imports": "^4.3.1",
 		"@total-typescript/ts-reset": "^0.5.1",
 		"@types/aws-lambda": "8.10.143",
+		"@types/bun": "^1.1.6",
 		"@types/eslint__js": "^8.42.3",
 		"@types/node": "^22.3.0",
 		"eslint": "^9.9.0",
