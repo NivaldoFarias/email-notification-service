@@ -1,26 +1,29 @@
 {
-  "compilerOptions": {
-    /* Language Compilation Options */
-    "module": "preserve",
-    "target": "ES2022",
-    "moduleDetection": "force",
-    "resolveJsonModule": true,
-    "lib": ["ES2022"],
-    "allowJs": true,
-    "checkJs": true,
-    "isolatedModules": true,
+    "compilerOptions": {
+        /* Language Compilation Options */
+        "module": "preserve",
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "checkJs": true,
+        "isolatedModules": true,
 
-    /* Emit Rules */
-    "noEmit": true,
+        /* Language and Environment */
+        "lib": ["ES2022"],
+        "target": "ES2022",
+        "moduleDetection": "force",
 
-    /* Type Checking Rules */
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
+        /* Emit Rules */
+        "noEmit": true,
 
-    /* Other Options */
-    "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
-    "forceConsistentCasingInFileNames": true
-  }
+        /* Type Checking Rules */
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+
+        /* Other Options */
+        "esModuleInterop": true,
+        "verbatimModuleSyntax": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["**/*.ts", ".prettierrc.cjs", "eslint.config.js"]
 }

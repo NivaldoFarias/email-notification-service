@@ -1,46 +1,55 @@
-import { Resource } from "sst";
-import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
-
+import { SendEmailCommand, SESv2Client } from "@aws-sdk/client-sesv2";
+import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { handle } from "hono/aws-lambda";
+import { prettyJSON } from "hono/pretty-json";
+import { Resource } from "sst";
 
 import { env } from "./env";
+import { awsErrorSchema, emailInputSchema } from "./schemas";
 
 const client = new SESv2Client();
 
-const app = new Hono().post("/email", async (ctx) => {
-  try {
-    await client.send(
-      new SendEmailCommand({
-        FromEmailAddress: Resource.modakEmail.sender,
-        Destination: {
-          ToAddresses: [Resource.modakEmail.sender],
-        },
-        Content: {
-          Simple: {
-            Subject: {
-              Data: "New SST App Notification",
-            },
-            Body: {
-              Text: {
-                Data: `Sent from my SST app '${Resource.App.name}' on stage '${Resource.App.stage}' and environment '${env.NODE_ENV}'.`,
-              },
-            },
-          },
-        },
-      })
-    );
+const app = new Hono();
 
-    return ctx.json({
-      status: "ok",
-      message: "Sent!" + JSON.stringify(ctx),
-    });
-  } catch (error) {
-    return ctx.json({
-      status: "error",
-      message: error instanceof Error ? error.message : error,
-    });
-  }
-});
+app.use(prettyJSON());
+app.post(
+	"/email",
+	zValidator("json", emailInputSchema, (result, ctx) => {
+		if (!result.success) return ctx.json(result.error, 400);
+	}),
+	async (ctx) => {
+		try {
+			const input = ctx.req.valid("json");
+
+			await client.send(
+				new SendEmailCommand({
+					FromEmailAddress: Resource.modakEmail.sender,
+					Destination: { ToAddresses: [input.destination] },
+					Content: {
+						Simple: {
+							Subject: { Data: `[${input.type}] New SST App Notification` },
+							Body: {
+								Text: {
+									Data: `Sent from my SST app '${Resource.App.name}' on stage '${Resource.App.stage}' and environment '${env.NODE_ENV}'. \n\n${input.message}`,
+								},
+							},
+						},
+					},
+				}),
+			);
+
+			return ctx.json({ message: "ok" });
+		} catch (error) {
+			const awsError = awsErrorSchema.safeParse(error);
+
+			if (awsError.success) {
+				return ctx.json({ message: awsError.data.message }, awsError.data.$metadata.httpStatusCode);
+			}
+
+			return ctx.json({ message: error instanceof Error ? error.message : error }, 500);
+		}
+	},
+);
 
 export const handler = handle(app);
