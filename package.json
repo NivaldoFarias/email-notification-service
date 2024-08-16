@@ -1,5 +1,5 @@
 {
-	"name": "modak",
+	"name": "email-notification-service",
 	"version": "0.0.1",
 	"description": "Email notification service",
 	"type": "module",

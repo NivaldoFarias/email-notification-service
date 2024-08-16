@@ -19,12 +19,6 @@ function setup() {
 	const app = new Hono();
 
 	app.use(prettyJSON());
-
-	app.get("/users", async (ctx) => ctx.json(await db.select().from(users).execute()));
-	app.get("/notifications", async (ctx) =>
-		ctx.json(await db.select().from(notifications).execute()),
-	);
-
 	app.post(
 		"/email",
 		zValidator("json", emailInputSchema, (result, ctx) => {
