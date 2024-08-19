@@ -41,6 +41,22 @@ The application is structured as follows:
 
 ## Running the Application
 
+### Production Environment
+
+The application is currently deployed to a AWS Lambda function. To hit the API, you can use the following command:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"type": "news", "destination": "user@example.com", "message": "This is a test message"}' \
+  https://sq2y5fpv2vn4rrxk7apboedbfq0qpsfc.lambda-url.us-east-1.on.aws/email
+```
+
+> [!IMPORTANT]  
+> Replace `user@example.com` with a valid email address.
+
+### Development Environment
+
 To start the application, run the following command:
 
 ```bash
@@ -59,7 +75,10 @@ Test the application by sending a POST request to the `/email` endpoint with a J
 }
 ```
 
-Be sure to replace `user@example.com` with a valid email address. AWS will then send an email to the specified address for testing purposes.
+> [!IMPORTANT]  
+> Replace `user@example.com` with a valid email address.
+
+AWS will then send an email to the specified address for testing purposes.
 
 ```bash
 curl -X POST \
