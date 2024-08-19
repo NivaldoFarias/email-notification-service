@@ -46,10 +46,13 @@ The application is structured as follows:
 The application is currently deployed to a AWS Lambda function. To hit the API, you can use the following command:
 
 ```bash
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"type": "news", "destination": "user@example.com", "message": "This is a test message"}' \
-  https://sq2y5fpv2vn4rrxk7apboedbfq0qpsfc.lambda-url.us-east-1.on.aws/email
+curl --location 'https://qrcsvjausl5l5yk7canytulgdm0bjzkv.lambda-url.us-east-1.on.aws/email' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"type": "marketing",
+	"message": "news message",
+	"destination": "user@example.com"
+}'
 ```
 
 > [!IMPORTANT]  
@@ -81,9 +84,11 @@ Test the application by sending a POST request to the `/email` endpoint with a J
 AWS will then send an email to the specified address for testing purposes.
 
 ```bash
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"type": "news", "destination": "user@example.com", "message": "This is a test message"}' \
-  https://<your-aws-api-url>/email
+curl --location 'https://<your-aws-api-url>/email' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"type": "marketing",
+	"message": "news message",
+	"destination": "user@example.com"
+}'
 ```
-
