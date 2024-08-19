@@ -10,7 +10,7 @@
 		"format": "bunx prettier --write .",
 		"db": "bunx sst shell drizzle-kit",
 		"db:studio": "bunx sst shell drizzle-kit studio",
-		"postinstall": "bun run db generate && bun run db migrate"
+		"postinstall": "bun run db migrate"
 	},
 	"license": "MIT",
 	"dependencies": {
