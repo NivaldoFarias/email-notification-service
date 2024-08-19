@@ -9,8 +9,7 @@
 		"lint": "bunx eslint .",
 		"format": "bunx prettier --write .",
 		"db": "bunx sst shell drizzle-kit",
-		"db:studio": "bunx sst shell drizzle-kit studio",
-		"postinstall": "bun run db migrate"
+		"db:studio": "bunx sst shell drizzle-kit studio"
 	},
 	"license": "MIT",
 	"dependencies": {

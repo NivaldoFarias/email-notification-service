@@ -41,25 +41,6 @@ The application is structured as follows:
 
 ## Running the Application
 
-### Production Environment
-
-The application is currently deployed to a AWS Lambda function. To hit the API, you can use the following command:
-
-```bash
-curl --location 'https://qrcsvjausl5l5yk7canytulgdm0bjzkv.lambda-url.us-east-1.on.aws/email' \
---header 'Content-Type: application/json' \
---data-raw '{
-	"type": "marketing",
-	"message": "news message",
-	"destination": "user@example.com"
-}'
-```
-
-> [!IMPORTANT]  
-> Replace `user@example.com` with a valid email address.
-
-### Development Environment
-
 To start the application, run the following command:
 
 ```bash
